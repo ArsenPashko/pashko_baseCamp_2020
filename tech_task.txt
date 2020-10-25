@@ -1,0 +1,145 @@
+ARSEN@ACER:~$ cd pashko_baseCamp_2020/
+
+ARSEN@ACER:~/pashko_baseCamp_2020$ touch README.md
+
+ARSEN@ACER:~/pashko_baseCamp_2020$ git status
+На ветке main
+Ваша ветка обновлена в соответствии с «origin/main».
+
+Изменения, которые не в индексе для коммита:
+  (используйте «git add <файл>…», чтобы добавить файл в индекс)
+  (use "git restore <file>..." to discard changes in working directory)
+	изменено:      README.md
+
+(используйте «git add» и/или «git commit -a»)
+
+arsen@acer:~/pashko_baseCamp_2020$ git add .
+
+arsen@acer:~/pashko_baseCamp_2020$ git commit -m "First commit"
+[main 22213cf] First commit
+ 6 files changed, 1 deletion(-)
+ 
+arsen@acer:~/pashko_baseCamp_2020$ git checkout -b userstory1
+Переключено на новую ветку «userstory1»
+
+arsen@acer:~/pashko_baseCamp_2020$ touch test_of_login.py
+
+arsen@acer:~/pashko_baseCamp_2020$ git status
+На ветке userstory1
+Неотслеживаемые файлы:
+  (используйте «git add <файл>…», чтобы добавить в то, что будет включено в коммит)
+	test_of_login.py
+ничего не добавлено в коммит, но есть неотслеживаемые файлы (используйте «git add», чтобы отслеживать их)
+
+arsen@acer:~/pashko_baseCamp_2020$ git add .
+
+arsen@acer:~/pashko_baseCamp_2020$ git commit -m "Added test of login"
+
+[userstory1 db5975b] Added test of login
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test_of_login.py
+ 
+arsen@acer:~/pashko_baseCamp_2020$ git checkout main
+Переключено на ветку «main»
+Ваша ветка опережает «origin/main» на 1 коммит.
+  (используйте «git push», чтобы опубликовать ваши локальные коммиты) 
+  
+arsen@acer:~/pashko_baseCamp_2020$ git checkout -b userstory2
+Переключено на новую ветку «userstory2»
+
+arsen@acer:~/pashko_baseCamp_2020$ touch test_of_registration.py
+
+arsen@acer:~/pashko_baseCamp_2020$ git add .
+
+arsen@acer:~/pashko_baseCamp_2020$ git commit -m "Added test of registration"
+[userstory2 2126f5a] Added test of registration
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test_of_registration.py
+ 
+arsen@acer:~/pashko_baseCamp_2020$ git log --oneline --decorate --graph --all
+* 2126f5a (HEAD -> userstory2) Added test of registration
+| * db5975b (userstory1) Added test of login
+|/  
+* 22213cf (main) First commit
+* b529ac5 (origin/main, origin/HEAD) Initial commit
+
+arsen@acer:~/pashko_baseCamp_2020$ git checkout main
+Переключено на ветку «main»
+Ваша ветка опережает «origin/main» на 1 коммит.
+  (используйте «git push», чтобы опубликовать ваши локальные коммиты)
+   
+arsen@acer:~/pashko_baseCamp_2020$ touch create_merge_conflict
+arsen@acer:~/pashko_baseCamp_2020$ vi create_merge_conflict 
+arsen@acer:~/pashko_baseCamp_2020$ git add .
+arsen@acer:~/pashko_baseCamp_2020$ git commit -m "Added conflict"
+[main 1036610] Added conflict
+ 1 file changed, 1 insertion(+)
+ create mode 100644 create_merge_conflict
+ 
+arsen@acer:~/pashko_baseCamp_2020$ git log --oneline --decorate --graph --all
+* 1036610 (HEAD -> main) Added conflict
+| * 2126f5a (userstory2) Added test of registration
+|/  
+| * db5975b (userstory1) Added test of login
+|/  
+* 22213cf First commit
+* b529ac5 (origin/main, origin/HEAD) Initial commit
+
+arsen@acer:~/pashko_baseCamp_2020$ git checkout userstory2
+Переключено на ветку «userstory2»
+
+arsen@acer:~/pashko_baseCamp_2020$ touch create_merge_conflict
+arsen@acer:~/pashko_baseCamp_2020$ vi create_merge_conflict 
+arsen@acer:~/pashko_baseCamp_2020$ git commit -am "added conflict"
+На ветке userstory2
+Неотслеживаемые файлы:
+  (используйте «git add <файл>…», чтобы добавить в то, что будет включено в коммит)
+	create_merge_conflict
+
+ничего не добавлено в коммит, но есть неотслеживаемые файлы (используйте «git add», чтобы отслеживать их)
+
+arsen@acer:~/pashko_baseCamp_2020$ git add .
+arsen@acer:~/pashko_baseCamp_2020$ git commit -m "added conflict"
+[userstory2 e8e4290] added conflict
+ 1 file changed, 1 insertion(+)
+ create mode 100644 create_merge_conflict
+
+arsen@acer:~/pashko_baseCamp_2020$ git checkout main
+Переключено на ветку «main»
+Ваша ветка опережает «origin/main» на 2 коммита.
+  (используйте «git push», чтобы опубликовать ваши локальные коммиты)
+  
+arsen@acer:~/pashko_baseCamp_2020$ git merge userstory2
+CONFLICT (add/add): Merge conflict in create_merge_conflict
+Автослияние create_merge_conflict
+Не удалось провести автоматическое слияние; исправьте конфликты и сделайте коммит результата.
+
+arsen@acer:~/pashko_baseCamp_2020$ cat create_merge_conflict 
+<<<<<<< HEAD
+Ddddd
+=======
+wewewe
+>>>>>>> userstory2
+
+arsen@acer:~/pashko_baseCamp_2020$ vi create_merge_conflict 
+arsen@acer:~/pashko_baseCamp_2020$ git add create_merge_conflict 
+arsen@acer:~/pashko_baseCamp_2020$ git merge userstory2
+fatal: Вы не завершили слияние (присутствует файл MERGE_HEAD).
+Выполните коммит ваших изменений, перед слиянием.
+arsen@acer:~/pashko_baseCamp_2020$ git commit
+[main 994593c] Merge branch 'userstory2' into main
+
+arsen@acer:~/pashko_baseCamp_2020$ git log --oneline --decorate --graph --all
+*   994593c (HEAD -> main) Merge branch 'userstory2' into main
+|\  
+| * e8e4290 (userstory2) added conflict
+| * 2126f5a Added test of registration
+* | 1036610 Added conflict
+|/  
+| * db5975b (userstory1) Added test of login
+|/  
+* 22213cf First commit
+* b529ac5 (origin/main, origin/HEAD) Initial commit
+arsen@acer:~/pashko_baseCamp_2020$ 
+
+
