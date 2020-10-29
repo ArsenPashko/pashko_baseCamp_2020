@@ -1,0 +1,112 @@
+
+-----------------------------------------------------------------1--------------------------------------------------------------------------
+
+arsen@acer:~$ mkdir -p f1/f2/f3/f4/f5/f6/
+
+arsen@acer:~$ cd f1
+
+arsen@acer:~/f1$ touch text_file.txt
+
+arsen@acer:~/f1$ cp /home/arsen/f1/text_file.txt /home/arsen/f1/f2/f3/f4/f5/f6/
+
+arsen@acer:~/f1$ cd
+
+arsen@acer:~$ rm /home/arsen/f1/f2/f3/f4/f5/f6/text_file.txt 
+
+
+-----------------------------------------------------------------2-------------------------------------------------------------------------
+
+
+arsen@acer:~$ cd f1
+
+arsen@acer:~/f1$ error_command 2> errors.txt
+
+------------------------------------------------------------------3-------------------------------------------------------------------------
+
+arsen@acer:~/f1$ error_command &> result_and_errors.txt
+
+
+------------------------------------------------------------------4------------------------------------------------------------------------
+
+
+arsen@acer:~/f1$ ls -la
+итого 20
+drwxrwxr-x  3 arsen arsen 4096 окт 29 19:51 .
+drwxr-xr-x 31 arsen arsen 4096 окт 29 19:29 ..
+-rw-rw-r--  1 arsen arsen  283 окт 29 19:48 errors.txt
+drwxrwxr-x  3 arsen arsen 4096 окт 29 19:29 f2
+-rw-rw-r--  1 arsen arsen  283 окт 29 19:51 result_and_errors.txt
+-rw-rw-r--  1 arsen arsen    0 окт 29 19:34 text_file.txt
+
+arsen@acer:~/f1$ sudo chown root text_file.txt 
+[sudo] пароль для arsen: 
+
+arsen@acer:~/f1$ ls -la
+итого 20
+drwxrwxr-x  3 arsen arsen 4096 окт 29 19:51 .
+drwxr-xr-x 31 arsen arsen 4096 окт 29 19:29 ..
+-rw-rw-r--  1 arsen arsen  283 окт 29 19:48 errors.txt
+drwxrwxr-x  3 arsen arsen 4096 окт 29 19:29 f2
+-rw-rw-r--  1 arsen arsen  283 окт 29 19:51 result_and_errors.txt
+-rw-rw-r--  1 root  arsen    0 окт 29 19:34 text_file.txt
+
+arsen@acer:~/f1$ sudo chmod +rwx text_file.txt 
+
+arsen@acer:~/f1$ ls -la
+итого 20
+drwxrwxr-x  3 arsen arsen 4096 окт 29 19:51 .
+drwxr-xr-x 31 arsen arsen 4096 окт 29 19:29 ..
+-rw-rw-r--  1 arsen arsen  283 окт 29 19:48 errors.txt
+drwxrwxr-x  3 arsen arsen 4096 окт 29 19:29 f2
+-rw-rw-r--  1 arsen arsen  283 окт 29 19:51 result_and_errors.txt
+-rwxrwxr-x  1 root  arsen    0 окт 29 19:34 text_file.txt
+
+
+--------------------------------------------------------------------5---------------------------------------------------------------------
+
+
+arsen@acer:~/f1$ ls
+errors.txt  f2  result_and_errors.txt  text_file.txt
+
+arsen@acer:~/f1$ rm non_existent_file || echo cmd1 failed
+rm: невозможно удалить 'non_existent_file': Нет такого файла или каталога
+cmd1 failed
+
+
+-------------------------------------------------------------------6----------------------------------------------------------------------
+
+
+arsen@acer:~/f1$ ls 
+errors.txt  f2  result_and_errors.txt  text_file.txt
+
+arsen@acer:~/f1$ rm errors.txt && echo cmd1 succesful
+cmd1 succesful
+
+arsen@acer:~/f1$ ls 
+f2  result_and_errors.txt  text_file.txt
+
+
+---------------------------------------------------------------------7-------------------------------------------------------------------
+
+arsen@acer:~/f1$ whereis bash
+bash: /usr/bin/bash /etc/bash.bashrc /usr/share/man/man1/bash.1.gz
+
+arsen@acer:~/f1$ touch try_shell.sh
+
+arsen@acer:~/f1$ vi try_shell.sh 
+
+arsen@acer:~/f1$ cat try_shell.sh 
+#!/usr/bin/bash
+
+echo You are now in:
+pwd
+
+arsen@acer:~/f1$ chmod +x try_shell.sh 
+
+arsen@acer:~/f1$ ./try_shell.sh 
+You are now in:
+/home/arsen/f1
+arsen@acer:~/f1$ 
+
+
+
